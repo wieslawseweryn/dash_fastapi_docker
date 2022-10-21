@@ -1,0 +1,2 @@
+sudo docker rm -f dash_docker
+sudo docker run -d -v "$(pwd)"/data:/app/data -p 80:80 --restart always --name dash_docker dash_docker

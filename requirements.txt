@@ -1,0 +1,13 @@
+dash
+dash-bootstrap-components
+dash-core-components
+dash-html-components
+dash-tabulator
+dash-table
+numpy
+pandas
+plotly
+scipy
+fastapi
+pydantic
+uvicorn

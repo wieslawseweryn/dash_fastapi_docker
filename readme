@@ -1,0 +1,5 @@
+docker build -t dummy1 .
+
+docker run -p 8000:8000 dummy1
+
+docker run -v "$(pwd)"/data:/app/data -p 8000:8000 dummy1
