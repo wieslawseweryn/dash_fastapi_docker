@@ -1561,18 +1561,6 @@ data_files = {
             'src_fn': 'data/sources/ecdc_vac_pl.csv',
             'data_fn': 'data/last/last_ecdc_vac_pl.csv'
         },
-    # Dane ECDC szczepienia w Europie w grupach wiekowych
-    # wg rodzaju szczepionki, dostawy
-    # zawieszone
-    'ecdc_vacc_eu':
-        {
-            'name': 'Szczepienia EU ECDC',
-            'type': 'csv',
-            'priority': 3,
-            'url': "https://opendata.ecdc.europa.eu/covid19/vaccine_tracker/csv/data.csv",
-            'src_fn': 'data/sources/ecdc_vac_eu.csv',
-            'data_fn': 'data/last/last_ecdc_vac_eu.csv'
-        },
     # Śmiertelność z bazy Eurostat
     'mortality_eurostat':
         {

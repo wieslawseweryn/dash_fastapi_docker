@@ -30,7 +30,7 @@ from layouts_more import layout_more_wplz, layout_more_tlzp, layout_more_wrrw, l
     layout_more_tlzgw, \
     layout_more_cmpf, layout_more_ecdc_vacc, layout_more_ecdc_vacc3, \
     layout_more_mz_vacc1, layout_more_mz_nop, layout_more_ireland, \
-    layout_more_ecdc_vacc0, layout_more_ecdc_vacc5, layout_more_ecdc_vacc6, \
+    layout_more_ecdc_vacc0, layout_more_ecdc_vacc6, \
     layout_more_ecdc_vacc7, layout_more_ecdc_vacc8, layout_more_mz_vacc2, layout_more_ecdc_vacc9, \
     layout_more_mz_vacc2a, layout_more_mz_vacc3, layout_more_mz_vacc4, \
     layout_more_mz_vacc5, layout_more_mz_psz, layout_more_mz_psz2, layout_more_hit1, layout_more_mz_psz3, \
@@ -928,7 +928,6 @@ def choose_more_class(n):
             {'label': 'Spadek efektywnego zaszczepienia populacji Polski *dane ECDC* (ecdc_vacc1)', 'value': 'ecdc_vacc1'},
             {'label': 'Efektywne zaszczepienie populacji Polski *dane ECDC* (ecdc_vacc2)', 'value': 'ecdc_vacc2'},
             {'label': 'Liczba zaszczepionych w grupach wiekowych (wybór: dawka)*dane ECDC* (ecdc_vacc3)', 'value': 'ecdc_vacc3'},
-            {'label': 'Ranking szczepień w krajach Europy *dane ECDC* (ecdc_vacc5)', 'value': 'ecdc_vacc5'},
             {'label': 'Bilans zaszczepienia populacji Polski *dane ECDC* (ecdc_vacc6)', 'value': 'ecdc_vacc6'},
             {'label': 'Procent zaszczepienia w województwach *dane ECDC* (ecdc_vacc7)', 'value': 'ecdc_vacc7'},
             {'label': 'Udział grup wiekowych w szczepieniach tygodniowych *dane ECDC* (ecdc_vacc8)', 'value': 'ecdc_vacc8'},
@@ -2253,25 +2252,6 @@ def choose_more_type(n):
             html.Div(id='more_2_id'),
             html.Div(id='more_3_id'),
         ]
-    elif n == 'ecdc_vacc5':  # Ranking szczepień w krajach Europy
-        ret_val = [
-            html.Div([
-                badge('Dawka', 'skalowaniey'),
-                dbc.Select(id='more_1_id',
-                           options=list_to_options(['dostawa', 'dawka_1', 'dawka_3', 'dawki', 'zapas', 'wpelni']),
-                           value='dawka_1',
-                           ),
-            ]),
-            html.Div([
-                badge('Grupa wiekowa', 'skalowaniey'),
-                dbc.Select(id='more_2_id',
-                           options=list_to_options(['ALL', 'Age10_14', 'Age15_17', 'Age18_24', 'Age25_49', 'Age50_59', 'Age60_69',  'Age70_79',
-                                                    'Age80+']),
-                           value='ALL',
-                           ),
-            ]),
-            html.Div(id='more_3_id'),
-        ]
     elif n == 'ecdc_vacc7':  # Procent zaszczepienia w województwach
         ret_val = [
             html.Div([
@@ -2655,8 +2635,6 @@ def go_more_figure(p1, p2, p3, go1, go3, go, p1a, p2a, type):
         ret_val = layout_more_ecdc_vacc0(DF, p1, p2, p3)
     elif type == 'ecdc_vacc3':
         ret_val = layout_more_ecdc_vacc3(DF, p1, p2, p3)
-    elif type == 'ecdc_vacc5':
-        ret_val = layout_more_ecdc_vacc5(DF, p1, p2, p3)
     elif type == 'ecdc_vacc6':
         ret_val = layout_more_ecdc_vacc6(DF, p1, p2, p3)
     elif type == 'ecdc_vacc7':

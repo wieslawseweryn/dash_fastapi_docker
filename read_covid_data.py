@@ -1329,41 +1329,6 @@ def load_data_ecdc_vac_pl():
     return df
 
 
-# Szczepienia ECDC Europa
-
-def load_data_ecdc_vac_eu():
-    df0 = pd.read_csv(data_files['ecdc_vacc_eu']['src_fn'])
-    df = df0[df0['ReportingCountry'] == df0['Region']].copy()
-    df['location'] = df['ReportingCountry'].map(nuts_countries)
-    df.columns = ['year_week', '_1', 'denom', 'dostawa', '_3', 'dawka_1', '_4', 'dawka_2', '_5', 'Dawka_3', '_6', 'grupa', 'marka', 'population', 'location']
-    del df['_1']
-    del df['_3']
-    del df['_4']
-    del df['_5']
-    del df['_6']
-    df['dostawa'].fillna(0, inplace=True)
-
-    df['week2'] = df['year_week'].str.slice(6, 8)
-    df['year2'] = df['year_week'].str.slice(0, 4)
-    df['year2'] = df['year2'].astype(int)
-
-    def f(par):
-        week = par['week2']
-        year = par['year2']
-        if int(year) == 2020:
-            ret_val = time.asctime(time.strptime('{} {} 1'.format(int(year), int(week) - 1), '%Y %W %w'))
-        else:
-            ret_val = time.asctime(time.strptime('{} {} 1'.format(int(year), int(week)), '%Y %W %w'))
-        return ret_val
-    df['date'] = df[['week2', 'year2']].apply(f, axis=1)
-    df['date'] = df['date'].astype('datetime64[ns]')
-    del df['year_week']
-    df.to_csv(data_files['ecdc_vacc_eu']['data_fn'])
-    print("  wygenerowano", data_files['ecdc_vacc_eu']['data_fn'])
-
-    return df
-
-
 # Dane R(t) dla Polski od Adama Gapińskiego
 
 def load_data_Rt():
@@ -2602,11 +2567,9 @@ stat_wojew.drop(columns=['ha', 'p1', 'p2', 'p3', 'p4', 'p5'], inplace=True)
 # load_data_mz_api_vacc_wojew()
 # read_testy_infekcje()
 # stat_testy_infekcje()
+
 # strefa testów
-# load_data_zgony_szczepienia()
 # read_gus()
-# make_teryt()
-# exit(0)
 # load_data_poland()
 # read_gus()
 # load_data_ewp_age()
@@ -2622,15 +2585,12 @@ stat_wojew.drop(columns=['ha', 'p1', 'p2', 'p3', 'p4', 'p5'], inplace=True)
 # load_data_resources()
 
 # tabele pomocnicze
-# load_data_jpt()
-# load_data_basiw_d()
-# load_data_basiw_i()
+# make_teryt()
 # load_data_zgony_szczepienia()
 load_data_ecdc_vac_pl()
 load_data_jpt()
 load_data_szczepienia()
 # load_data_ecdc_vac_pl()
-load_data_ecdc_vac_eu()
 load_data_mz_api_age_d()
 load_data_mz_api_age_v()
 load_data_mz_psz()
@@ -2644,9 +2604,6 @@ load_data_resources()
 # load_data_mortality_eurostat()
 
 # dane pomocnicze poland
-
-# wyłączone z powodu braku aktualizacji przez micalrg
-# load_data_balance()
 
 # tabele podstawowe
 
